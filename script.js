@@ -4,6 +4,8 @@ for (let i = 0; i < 10000; i++) {
     button.appendChild(document.createTextNode("click :3"))
     button.addEventListener("mousedown", cs);
     button.addEventListener("mouseup", ce);
+    button.addEventListener("mouseenter", hs);
+    button.addEventListener("mouseleave", he);
     document.body.appendChild(button);            
 }
 
@@ -15,12 +17,28 @@ for (let i = 0; i < 4; i++) {
     click_end.push(new Audio(`./sounds/ce_${i}.mp3`))
 }
 
+function playRandom(files) {
+    let index = Math.floor(files.length * Math.random())
+    files[index].play()
+    files[index].currentTime = 0
+}
+
 function cs() {
-    let index = Math.floor(click_start.length * Math.random())
-    click_start[index].play()
+    playRandom(click_start)
 }
 
 function ce() {
-    let index = Math.floor(click_end.length * Math.random())
-    click_end[index].play()
+    playRandom(click_end)
+}
+
+function hs(e) {
+    if (e.buttons > 0) {
+        playRandom(click_start)
+    }
+}
+
+function he(e) {
+    if (e.buttons > 0) {
+        playRandom(click_end)
+    }
 }
