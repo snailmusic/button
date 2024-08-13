@@ -1,11 +1,11 @@
 console.log("buttons")
 for (let i = 0; i < 10000; i++) {
-    let button = document.createElement("button");
-    button.appendChild(document.createTextNode("click :3"))
-    button.addEventListener("mousedown", cs);
-    button.addEventListener("mouseup", ce);
-    button.addEventListener("mouseenter", hs);
-    button.addEventListener("mouseleave", he);
+    let button = document.createElement("div");
+    button.appendChild(document.createTextNode(":3"))
+    button.addEventListener("mousedown", cs(button));
+    button.addEventListener("mouseup", ce(button));
+    button.addEventListener("mouseenter", hs(button));
+    button.addEventListener("mouseleave", he(button));
     document.body.appendChild(button);            
 }
 
@@ -23,22 +23,34 @@ function playRandom(files) {
     files[index].currentTime = 0
 }
 
-function cs() {
-    playRandom(click_start)
-}
-
-function ce() {
-    playRandom(click_end)
-}
-
-function hs(e) {
-    if (e.buttons > 0) {
+function cs(elem) {
+    return () => {
+        elem.className = "pressed"
         playRandom(click_start)
     }
 }
 
-function he(e) {
-    if (e.buttons > 0) {
+function ce(elem) {
+    return () => {
+        elem.className = ""
         playRandom(click_end)
+    }
+}
+
+function hs(elem) {
+    return (e) => {
+        if (e.buttons > 0) {
+            elem.className = "pressed"
+            playRandom(click_start)
+        }
+    }
+}
+
+function he(elem) {
+    return (e) => {
+        if (e.buttons > 0) {
+            elem.className = ""
+            playRandom(click_end)
+        }
     }
 }

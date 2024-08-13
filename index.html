@@ -13,13 +13,27 @@
             /* grid-template-columns: repeat(10, 1fr); */
             gap: 1rem;
             justify-content: space-evenly;
+            user-select: none;
         }
 
-        button {
+        div {
             /* flex-grow: 1; */
             width: 8rem;
             aspect-ratio: 1/1;
             border-radius: 100%;
+            background-color: #cecece;
+            display: flex;
+
+            border: 10px outset #e1e1e1;
+
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .pressed {
+            background-color: #6c6c6c;
+            border: 10px inset #747474;
         }
     </style>
 </head>
