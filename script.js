@@ -1,3 +1,5 @@
+const time = 800;
+
 console.log("buttons")
 for (let i = 0; i < 10000; i++) {
     let button = document.createElement("div");
@@ -32,8 +34,10 @@ function cs(elem) {
 
 function ce(elem) {
     return () => {
+        setTimeout(() => {
         elem.className = ""
         playRandom(click_end)
+        }, time);
     }
 }
 
@@ -49,8 +53,10 @@ function hs(elem) {
 function he(elem) {
     return (e) => {
         if (e.buttons > 0) {
-            elem.className = ""
-            playRandom(click_end)
+            setTimeout(() => {
+                elem.className = ""
+                playRandom(click_end)
+            }, time);
         }
     }
 }
